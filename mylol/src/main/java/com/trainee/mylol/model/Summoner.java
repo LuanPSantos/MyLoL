@@ -8,7 +8,7 @@ public class Summoner {
     private Long id;
     private Long accountId;
     private String name;
-    private Integer profileIconId;
+    private String profileIconURL;
     private Long summonerLevel;
     private Set<LeaguePosition> leaguePositions;
     private String splashURL;
@@ -37,12 +37,12 @@ public class Summoner {
         this.name = name;
     }
 
-    public Integer getProfileIconId() {
-        return profileIconId;
+    public String getProfileIconURL() {
+        return profileIconURL;
     }
 
-    public void setProfileIconId(Integer profileIconId) {
-        this.profileIconId = profileIconId;
+    public void setProfileIconURL(String profileIconURL) {
+        this.profileIconURL = profileIconURL;
     }
 
     public Long getSummonerLevel() {
@@ -93,6 +93,6 @@ public class Summoner {
 
     @Override
     public String toString() {
-        return "Summoner{" + "id=" + id + ", accountId=" + accountId + ", name=" + name + ", profileIconId=" + profileIconId + ", summonerLevel=" + summonerLevel + ", leaguePositions=" + leaguePositions + ", splashURL=" + splashURL + '}';
+        return "Summoner{" + "id=" + id + ", accountId=" + accountId + ", name=" + name + ", profileIconURL=" + profileIconURL + ", summonerLevel=" + summonerLevel + ", leaguePositions=" + leaguePositions + ", splashURL=" + splashURL + '}';
     }
 }

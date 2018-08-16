@@ -20,7 +20,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SummonerService {
     
-    private final String SUFFIX = "_0.jpg";
+    private final String SUFFIX_JPG = "_0.jpg";
+    private final String SUFFIX_PNG = ".png";
 
     @Autowired
     private SummonerClient summonerClient;
@@ -33,8 +34,11 @@ public class SummonerService {
     
     @Value("${mylol.url.base}")
     private String urlBase;
-    @Value("${mylol.url.static.path}")
-    private String staticPath;
+    
+    @Value("${mylol.url.static.path.splash}")
+    private String staticPathSplash;
+    @Value("${mylol.url.static.path.profileicon}")
+    private String staticPathProfileIcon;
 
     public Summoner getSummonerByName(String name) {
         SummonerDTO summonerDTO = summonerClient.getSummonerByName(name);
@@ -56,7 +60,7 @@ public class SummonerService {
         if (summonerDTO != null) {
             summoner.setId(summonerDTO.getId());
             summoner.setName(summonerDTO.getName());
-            summoner.setProfileIconId(summonerDTO.getProfileIconId());
+            summoner.setProfileIconURL(urlBase + staticPathProfileIcon + summonerDTO.getProfileIconId()+ SUFFIX_PNG);
             summoner.setSummonerLevel(summonerDTO.getSummonerLevel());
             summoner.setAccountId(summonerDTO.getAccountId());
         }
@@ -85,7 +89,7 @@ public class SummonerService {
 
     private void parseChampionDtoToSummoner(ChampionDTO championDTO, Summoner summoner) {
         if(championDTO != null){
-            summoner.setSplashURL(urlBase + staticPath + championDTO.getKey() + SUFFIX);
+            summoner.setSplashURL(urlBase + staticPathSplash + championDTO.getKey() + SUFFIX_JPG);
         }
     }
 }
