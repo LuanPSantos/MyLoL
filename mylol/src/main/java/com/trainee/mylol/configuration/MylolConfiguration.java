@@ -20,6 +20,11 @@ public class MylolConfiguration implements WebMvcConfigurer {
     @Value("${mylol.url.static.path.profileicon}")
     private String staticPathProfileIcon;
     
+    @Value("${mylol.url.static.folder.champion}")
+    private String resourceLocationChampion;
+    @Value("${mylol.url.static.path.champion}")
+    private String staticPathChampion;
+    
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler(staticPathSplash + "**")
@@ -27,6 +32,9 @@ public class MylolConfiguration implements WebMvcConfigurer {
         
         registry.addResourceHandler(staticPathProfileIcon + "**")
                 .addResourceLocations(resourceLocationProfileIcon);
+        
+        registry.addResourceHandler(staticPathChampion + "**")
+                .addResourceLocations(resourceLocationChampion);
     }
     
     

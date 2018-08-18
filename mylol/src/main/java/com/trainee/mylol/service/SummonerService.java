@@ -4,6 +4,8 @@ import com.trainee.mylol.client.ChampionMasteryClient;
 import com.trainee.mylol.client.LeagueClient;
 import com.trainee.mylol.client.StaticDataClient;
 import com.trainee.mylol.client.SummonerClient;
+import static com.trainee.mylol.constant.FileConstants.SUFFIX_JPG;
+import static com.trainee.mylol.constant.FileConstants.SUFFIX_PNG;
 import com.trainee.mylol.model.LeaguePosition;
 import com.trainee.mylol.model.Summoner;
 import com.trainee.mylol.model.riot.ChampionDTO;
@@ -19,9 +21,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SummonerService {
-    
-    private final String SUFFIX_JPG = "_0.jpg";
-    private final String SUFFIX_PNG = ".png";
 
     @Autowired
     private SummonerClient summonerClient;
@@ -31,10 +30,10 @@ public class SummonerService {
     private ChampionMasteryClient championMasteryClient;
     @Autowired
     private StaticDataClient staticDataClient;
-    
+
     @Value("${mylol.url.base}")
     private String urlBase;
-    
+
     @Value("${mylol.url.static.path.splash}")
     private String staticPathSplash;
     @Value("${mylol.url.static.path.profileicon}")
@@ -43,10 +42,9 @@ public class SummonerService {
     public Summoner getSummonerByName(String name) {
         SummonerDTO summonerDTO = summonerClient.getSummonerByName(name);
         Set<LeaguePositionDTO> leaguePositionDTOs = leagueClient.getLeaguePositionBySummonerId(summonerDTO.getId());
-        List<ChampionMasteryDTO> championMasteryDTOs = championMasteryClient.getLeaguePositionBySummonerId(summonerDTO.getId());        
+        List<ChampionMasteryDTO> championMasteryDTOs = championMasteryClient.getLeaguePositionBySummonerId(summonerDTO.getId());
         ChampionMasteryDTO championMasteryDTO = championMasteryDTOs.get(0);
         ChampionDTO championDTO = staticDataClient.getChampionByChampionId(championMasteryDTO.getChampionId());
-        
 
         Summoner summoner = new Summoner();
         parseSummonerDtoToSummoner(summonerDTO, summoner);
@@ -60,7 +58,7 @@ public class SummonerService {
         if (summonerDTO != null) {
             summoner.setId(summonerDTO.getId());
             summoner.setName(summonerDTO.getName());
-            summoner.setProfileIconURL(urlBase + staticPathProfileIcon + summonerDTO.getProfileIconId()+ SUFFIX_PNG);
+            summoner.setProfileIconURL(urlBase + staticPathProfileIcon + summonerDTO.getProfileIconId() + SUFFIX_PNG);
             summoner.setSummonerLevel(summonerDTO.getSummonerLevel());
             summoner.setAccountId(summonerDTO.getAccountId());
         }
@@ -68,10 +66,10 @@ public class SummonerService {
 
     private void parseLeaguePositionDtoToSummoner(Set<LeaguePositionDTO> leaguePositionDTOs, Summoner summoner) {
         Set<LeaguePosition> leaguePositions = new HashSet<>();
-        if(leaguePositionDTOs != null){
+        if (leaguePositionDTOs != null) {
             leaguePositionDTOs.forEach(leaguePositionDTO -> {
                 LeaguePosition leaguePosition = new LeaguePosition();
-                
+
                 leaguePosition.setQueueType(leaguePositionDTO.getQueueType());
                 leaguePosition.setWins(leaguePositionDTO.getWins());
                 leaguePosition.setLosses(leaguePositionDTO.getLosses());
@@ -79,16 +77,16 @@ public class SummonerService {
                 leaguePosition.setRank(leaguePositionDTO.getRank());
                 leaguePosition.setTier(leaguePositionDTO.getTier());
                 leaguePosition.setLeaguePoints(leaguePositionDTO.getLeaguePoints());
-                
+
                 leaguePositions.add(leaguePosition);
             });
         }
-        
+
         summoner.setLeaguePositions(leaguePositions);
     }
 
     private void parseChampionDtoToSummoner(ChampionDTO championDTO, Summoner summoner) {
-        if(championDTO != null){
+        if (championDTO != null) {
             summoner.setSplashURL(urlBase + staticPathSplash + championDTO.getKey() + SUFFIX_JPG);
         }
     }

@@ -1,11 +1,10 @@
 package com.trainee.mylol.client;
 
-import static com.trainee.mylol.client.HeaderConstants.ACCEPT;
-import static com.trainee.mylol.client.HeaderConstants.API_KEY;
-import static com.trainee.mylol.client.HeaderConstants.LOCALE;
-import static com.trainee.mylol.client.HeaderConstants.TAGS;
+import static com.trainee.mylol.constant.RequestConstants.ACCEPT;
+import static com.trainee.mylol.constant.RequestConstants.API_KEY;
+import static com.trainee.mylol.constant.RequestConstants.LOCALE;
+import static com.trainee.mylol.constant.RequestConstants.TAGS;
 import com.trainee.mylol.model.riot.ChampionDTO;
-import com.trainee.mylol.model.riot.SummonerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;

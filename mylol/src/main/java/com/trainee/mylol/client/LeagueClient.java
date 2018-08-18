@@ -1,7 +1,7 @@
 package com.trainee.mylol.client;
 
-import static com.trainee.mylol.client.HeaderConstants.ACCEPT;
-import static com.trainee.mylol.client.HeaderConstants.API_KEY;
+import static com.trainee.mylol.constant.RequestConstants.ACCEPT;
+import static com.trainee.mylol.constant.RequestConstants.API_KEY;
 import com.trainee.mylol.model.riot.LeaguePositionDTO;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;

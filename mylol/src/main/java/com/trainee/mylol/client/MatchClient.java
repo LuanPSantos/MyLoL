@@ -1,9 +1,8 @@
 package com.trainee.mylol.client;
 
-
 import static com.trainee.mylol.constant.RequestConstants.ACCEPT;
 import static com.trainee.mylol.constant.RequestConstants.API_KEY;
-import com.trainee.mylol.model.riot.SummonerDTO;
+import com.trainee.mylol.model.riot.MatchlistDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -15,32 +14,34 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
-public class SummonerClient {
-    
+public class MatchClient {
+
     @Value("${mylol.apikey}")
     private String key;
-    @Value("${mylol.url.summoner.byname}")
-    private String byNameUrl;
-    
+    @Value("${mylol.url.match.byaccountid}")
+    private String matchByAccountId;
+
     @Autowired
     private RestTemplate restTemplate;
 
-    public SummonerDTO getSummonerByName(String name) {
+    public MatchlistDTO getMatchList(Long accountId, Integer beginIndex, Integer endIndex) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add(ACCEPT, MediaType.APPLICATION_JSON_VALUE);
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(byNameUrl)
-                .path(name.replaceAll(" ", ""))
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(matchByAccountId)
+                .path(String.valueOf(accountId))
+                .queryParam("beginIndex", beginIndex)
+                .queryParam("endIndex", endIndex)
                 .queryParam(API_KEY, key);
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
 
-        HttpEntity<SummonerDTO> response = restTemplate.exchange(
+        HttpEntity<MatchlistDTO> response = restTemplate.exchange(
                 builder.toUriString(),
                 HttpMethod.GET,
                 entity,
-                SummonerDTO.class
+                MatchlistDTO.class
         );
 
         return response.getBody();
