@@ -15,6 +15,7 @@ import com.trainee.mylol.model.riot.SummonerDTO;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,6 @@ public class SummonerService {
 
     @Value("${mylol.url.base}")
     private String urlBase;
-
     @Value("${mylol.url.static.path.splash}")
     private String staticPathSplash;
     @Value("${mylol.url.static.path.profileicon}")
@@ -67,7 +67,7 @@ public class SummonerService {
     private void parseLeaguePositionDtoToSummoner(Set<LeaguePositionDTO> leaguePositionDTOs, Summoner summoner) {
         Set<LeaguePosition> leaguePositions = new HashSet<>();
         if (leaguePositionDTOs != null) {
-            leaguePositionDTOs.forEach(leaguePositionDTO -> {
+            leaguePositions = leaguePositionDTOs.stream().map(leaguePositionDTO -> {
                 LeaguePosition leaguePosition = new LeaguePosition();
 
                 leaguePosition.setQueueType(leaguePositionDTO.getQueueType());
@@ -78,8 +78,8 @@ public class SummonerService {
                 leaguePosition.setTier(leaguePositionDTO.getTier());
                 leaguePosition.setLeaguePoints(leaguePositionDTO.getLeaguePoints());
 
-                leaguePositions.add(leaguePosition);
-            });
+                return leaguePosition;
+            }).collect(Collectors.toSet());
         }
 
         summoner.setLeaguePositions(leaguePositions);

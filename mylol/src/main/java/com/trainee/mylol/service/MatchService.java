@@ -17,22 +17,17 @@ import org.springframework.stereotype.Service;
 public class MatchService {
     
     @Value("${mylol.url.static.path.champion}")
-    private String staticPathChampion;
-    
+    private String staticPathChampion;    
     @Value("${mylol.url.match.bygameid}")
-    private String matchByGameId;
-    
+    private String matchByGameId;    
     @Value("${mylol.url.base}")
     private String urlBase;
     
     @Autowired
-    private MatchClient matchClient;
-    
+    private MatchClient matchClient;    
     @Autowired
     private StaticDataClient staticDataClient;
     
-    static int cont = 0;
-
     public List<MatchItem> getMatchList(Long accountId, Integer beginIndex, Integer endIndex) {
         MatchlistDTO matchList = matchClient.getMatchList(accountId, beginIndex, endIndex);
         
