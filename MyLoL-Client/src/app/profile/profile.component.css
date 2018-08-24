@@ -1,9 +1,10 @@
 .profile-icon{
-  background-color: black;
+  background-color: #003c8f;
   border-radius: 50%;
   width: 80px;
   height: 80px;
   border: 2px solid #ccc;
+  margin: 0 auto;
 }
 
 .summoner-level{
@@ -29,16 +30,13 @@
 }
 
 .flex{
-  background-color: #ccc;
   height: 80px;
 }
 
 .solo{
-  background-color: #ccc;
   height: 80px;
 }
 
 .tt{
-  background-color: #ccc;
   height: 80px;
 }

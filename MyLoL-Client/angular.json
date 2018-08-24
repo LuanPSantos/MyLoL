@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "MyLoL-Client"
+  "defaultProject": "MyLoL-Client",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

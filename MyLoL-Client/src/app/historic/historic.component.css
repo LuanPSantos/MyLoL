@@ -1,0 +1,32 @@
+.card-margin{
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.champion-image{
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: #003c8f;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.champion-name{
+  vertical-align: middle;
+  line-height: 50px;
+}
+
+.timestemp{
+  vertical-align: middle;
+  line-height: 50px;
+  float: right;
+}
+
+.historic{
+  text-align: center;
+}
+
+.item-historic{
+  margin-bottom: 24px;
+}

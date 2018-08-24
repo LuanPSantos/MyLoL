@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -10,9 +10,13 @@ import { NothingComponent } from './nothing/nothing.component';
 
 import {
   InputTextModule,
-  CardModule
+  CardModule,
+  ButtonModule
 
 } from 'primeng/primeng';
+import { SummonerService } from '../shared/service/summoner.service';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,9 +30,12 @@ import {
     BrowserModule,
     AppRoutingModule,
     InputTextModule,
-    CardModule
+    CardModule,
+    ButtonModule,
+    HttpClientModule,
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
-  providers: [],
+  providers: [SummonerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
