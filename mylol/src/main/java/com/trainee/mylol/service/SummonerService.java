@@ -5,6 +5,7 @@ import com.trainee.mylol.client.LeagueClient;
 import com.trainee.mylol.client.SummonerClient;
 import static com.trainee.mylol.constant.FileConstants.SUFFIX_JPG;
 import static com.trainee.mylol.constant.FileConstants.SUFFIX_PNG;
+import com.trainee.mylol.util.LeagueParseUtil;
 import com.trainee.mylol.model.LeaguePosition;
 import com.trainee.mylol.model.Summoner;
 import com.trainee.mylol.model.riot.ChampionDTO;
@@ -69,7 +70,7 @@ public class SummonerService {
             leaguePositions = leaguePositionDTOs.stream().map(leaguePositionDTO -> {
                 LeaguePosition leaguePosition = new LeaguePosition();
 
-                leaguePosition.setQueueType(leaguePositionDTO.getQueueType());
+                leaguePosition.setQueueType(LeagueParseUtil.getQueue(leaguePositionDTO.getQueueType()));
                 leaguePosition.setWins(leaguePositionDTO.getWins());
                 leaguePosition.setLosses(leaguePositionDTO.getLosses());
                 leaguePosition.setLeagueName(leaguePositionDTO.getLeagueName());

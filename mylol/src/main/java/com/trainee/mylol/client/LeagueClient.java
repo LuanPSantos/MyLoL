@@ -2,6 +2,7 @@ package com.trainee.mylol.client;
 
 import static com.trainee.mylol.constant.RequestConstants.ACCEPT;
 import static com.trainee.mylol.constant.RequestConstants.API_KEY;
+import static com.trainee.mylol.constant.RequestConstants.LOCALE;
 import com.trainee.mylol.model.riot.LeaguePositionDTO;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class LeagueClient {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(bySummonerIdUrl)
                 .path(String.valueOf(summonerId))
+                .queryParam(LOCALE, "pt_BR")
                 .queryParam(API_KEY, key);
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
