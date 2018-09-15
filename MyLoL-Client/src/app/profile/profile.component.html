@@ -1,35 +1,33 @@
 <div class="ui-g">
   <div class="ui-g-12 ui-sm-12 ui-md-8 ui-lg-6 ui-xl-6 ui-g-nopad  ui-md-offset-2 ui-lg-offset-3 ui-xl-offset-3">
-
+   
     <p-card>
-      <div class="ui-g card-height">
+      <div class="ui-g card-height" [ngStyle]="{ 'background-image': 'url(' + (summoner$ | async)?.splashURL +')'}">
         <div class="ui-g-12 ui-sm-4 ui-md-2 ui-lg-2 ui-xl-2 ui-g-nopad">
-          <div class="profile-icon">
-
+          <div class="profile-icon" [ngStyle]="{ 'background-image': 'url(' + (summoner$ | async)?.profileIconURL +')'}">
+            
             <div class="summoner-level">
-              <span>12</span>
+              <span>{{(summoner$ | async)?.summonerLevel}}</span>
             </div>
           </div>
         </div>
 
         <div class="ui-g-12 ui-sm-8 ui-md-10 ui-lg-10 ui-xl-10 ui-g-nopad">
-          <span class="summoner-name">Packaged</span>
+          <span class="summoner-name">{{(summoner$ | async)?.name}}</span>
         </div>
 
 
-        <div class="ui-g-12 ui-g-nopad">
+        <!-- <div class="ui-g-12 ui-g-nopad">
           <div class="ui-g">
-            <div class="ui-g-12 ui-sm-4 ui-md-3 ui-lg-2 ui-xl-2 ui-g-nopad  ui-md-offset-3 ui-lg-offset-6 ui-xl-offset-6 flex">
-      
-            </div>
-            <div class="ui-g-12 ui-sm-4 ui-md-3 ui-lg-2 ui-xl-2 ui-g-nopad solo">
-   
-            </div>
-            <div class="ui-g-12 ui-sm-4 ui-md-3 ui-lg-2 ui-xl-2 ui-g-nopad tt">
-    
+            <div *ngFor="let leaguePosition of (summoner$ | async)?.leaguePositions" class="ui-g-4 ui-g-nopad  league-position-container">
+              <p>Fila: {{leaguePosition.queueType}}</p>
+              <p>Elo: {{leaguePosition.tier}} - {{leaguePosition.rank}} </p>
+              <p>Liga: {{leaguePosition.leagueName}}</p>
+              <p>V/D: {{leaguePosition.wins}}/{{leaguePosition.losses}}</p>
+              <p>PDL: {{leaguePosition.leaguePoints}}</p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </p-card>
 

@@ -3,5 +3,9 @@
 }
 
 .margin-bottom-topbar{
-  margin-bottom: 16px;
+  margin-bottom: 4px;
+}
+
+.loading{
+  text-align: center;
 }

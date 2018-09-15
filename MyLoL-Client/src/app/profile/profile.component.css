@@ -5,6 +5,10 @@
   height: 80px;
   border: 2px solid #ccc;
   margin: 0 auto;
+  margin-top: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
 }
 
 .summoner-level{
@@ -21,22 +25,36 @@
 }
 
 .summoner-name{
-  font-size: 28pt;
-  line-height: 80px;
+  font-size: 5vmin;
+  line-height: 112px;
+  background-color: rgba(0,0,0, 0.6);
+  color: white;
+  border-radius: 30% 5% 30% 5%;
+  padding: 0px 12px 0px 12px;
 }
 
 .card-height{
   height: 400px;
+  background-color: black;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size:100% auto  ;
 }
 
-.flex{
-  height: 80px;
+@media only screen and (max-width: 640px) {
+  .card-height {
+    height: 200px;
+  }
 }
 
-.solo{
-  height: 80px;
+@media only screen and (max-width: 1024px) and (min-width: 641px){
+  .card-height {
+    height: 280px;
+  }
 }
 
-.tt{
-  height: 80px;
+@media only screen and (max-width: 1024px) and (min-width: 1025px) {
+  .card-height {
+    height: 300px;
+  }
 }

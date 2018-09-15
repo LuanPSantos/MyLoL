@@ -2,13 +2,10 @@
   <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12 ui-xl-12 ui-g-nopad topbar">
 
     <div class="ui-g">
-      <div class="ui-g-12 ui-sm-8 ui-md-4 ui-lg-4 ui-xl-4      ui-md-offset-4 ui-lg-offset-4 ui-xl-offset-4">
+      <div class="ui-g-12 ui-sm-10 ui-md-4 ui-lg-4 ui-xl-4      ui-sm-offset-1 ui-md-offset-4 ui-lg-offset-4 ui-xl-offset-4">
 
-        <input #inputSearch type="text" class="full-width" pInputText placeholder="Buscar invocador" >
+        <input #inputSearch type="text" class="full-width" pInputText placeholder="Buscar invocador" (keyup)="search($event, inputSearch.value)">
 
-      </div>
-      <div class="ui-g-12 ui-sm-4 ui-md-2 ui-lg-2 ui-xl-2">
-          <p-button label="Pesquisar" (onClick)="search(inputSearch.value)" [style]="{'background-color': 'white !important'}"></p-button>
       </div>
     </div>
 
@@ -18,3 +15,11 @@
 <router-outlet name="top"></router-outlet>
 
 <router-outlet name="bottom"></router-outlet>
+
+<div class="ui-g margin-bottom-topbar">
+  <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12 ui-xl-12 ui-g-nopad loading">
+
+    <p-progressSpinner [hidden]="!(loadingSummoner$ | async) && !(loadginMatchList$ | async)"></p-progressSpinner>
+
+  </div>
+</div>

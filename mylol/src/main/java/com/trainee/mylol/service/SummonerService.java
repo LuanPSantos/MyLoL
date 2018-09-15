@@ -2,7 +2,6 @@ package com.trainee.mylol.service;
 
 import com.trainee.mylol.client.ChampionMasteryClient;
 import com.trainee.mylol.client.LeagueClient;
-import com.trainee.mylol.client.StaticDataClient;
 import com.trainee.mylol.client.SummonerClient;
 import static com.trainee.mylol.constant.FileConstants.SUFFIX_JPG;
 import static com.trainee.mylol.constant.FileConstants.SUFFIX_PNG;
@@ -30,7 +29,7 @@ public class SummonerService {
     @Autowired
     private ChampionMasteryClient championMasteryClient;
     @Autowired
-    private StaticDataClient staticDataClient;
+    private StaticDataService staticDataService;
 
     @Value("${mylol.url.base}")
     private String urlBase;
@@ -44,7 +43,7 @@ public class SummonerService {
         Set<LeaguePositionDTO> leaguePositionDTOs = leagueClient.getLeaguePositionBySummonerId(summonerDTO.getId());
         List<ChampionMasteryDTO> championMasteryDTOs = championMasteryClient.getLeaguePositionBySummonerId(summonerDTO.getId());
         ChampionMasteryDTO championMasteryDTO = championMasteryDTOs.get(0);
-        ChampionDTO championDTO = staticDataClient.getChampionByChampionId(championMasteryDTO.getChampionId());
+        ChampionDTO championDTO = staticDataService.getChampionById(championMasteryDTO.getChampionId());
 
         Summoner summoner = new Summoner();
         parseSummonerDtoToSummoner(summonerDTO, summoner);
@@ -87,7 +86,7 @@ public class SummonerService {
 
     private void parseChampionDtoToSummoner(ChampionDTO championDTO, Summoner summoner) {
         if (championDTO != null) {
-            summoner.setSplashURL(urlBase + staticPathSplash + championDTO.getKey() + SUFFIX_JPG);
+            summoner.setSplashURL(urlBase + staticPathSplash + championDTO.getId() + SUFFIX_JPG);
         }
     }
 }

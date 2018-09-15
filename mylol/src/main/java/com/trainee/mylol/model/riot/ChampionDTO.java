@@ -18,34 +18,14 @@ public class ChampionDTO {
     private PassiveDTO passive;
     private List<RecommendedDTO> recommended;
     private List<String> allytips;
-    private String key;
+    private Long key; // Key na verdade é o ID numerico
     private String lore;
-    private int id;
+    private String id; // o ID é a key Stirng... vai saber porque eles fizeram assim!
     private String blurb;
     private List<ChampionSpellDTO> spells;
 
     public InfoDTO getInfo() {
         return info;
-    }
-
-    public void setInfo(InfoDTO info) {
-        this.info = info;
-    }
-
-    public List<String> getEnemytips() {
-        return enemytips;
-    }
-
-    public void setEnemytips(List<String> enemytips) {
-        this.enemytips = enemytips;
-    }
-
-    public StatsDTO getStats() {
-        return stats;
-    }
-
-    public void setStats(StatsDTO stats) {
-        this.stats = stats;
     }
 
     public String getName() {
@@ -60,71 +40,11 @@ public class ChampionDTO {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public ImageDTO getImage() {
-        return image;
-    }
-
-    public void setImage(ImageDTO image) {
-        this.image = image;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
-    }
-
-    public String getPartype() {
-        return partype;
-    }
-
-    public void setPartype(String partype) {
-        this.partype = partype;
-    }
-
-    public List<SkinDTO> getSkins() {
-        return skins;
-    }
-
-    public void setSkins(List<SkinDTO> skins) {
-        this.skins = skins;
-    }
-
-    public PassiveDTO getPassive() {
-        return passive;
-    }
-
-    public void setPassive(PassiveDTO passive) {
-        this.passive = passive;
-    }
-
-    public List<RecommendedDTO> getRecommended() {
-        return recommended;
-    }
-
-    public void setRecommended(List<RecommendedDTO> recommended) {
-        this.recommended = recommended;
-    }
-
-    public List<String> getAllytips() {
-        return allytips;
-    }
-
-    public void setAllytips(List<String> allytips) {
-        this.allytips = allytips;
-    }
-
-    public String getKey() {
+    public Long getKey() {
         return key;
     }
 
-    public void setKey(String key) {
+    public void setKey(Long key) {
         this.key = key;
     }
 
@@ -132,15 +52,11 @@ public class ChampionDTO {
         return lore;
     }
 
-    public void setLore(String lore) {
-        this.lore = lore;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -148,22 +64,10 @@ public class ChampionDTO {
         return blurb;
     }
 
-    public void setBlurb(String blurb) {
-        this.blurb = blurb;
-    }
-
-    public List<ChampionSpellDTO> getSpells() {
-        return spells;
-    }
-
-    public void setSpells(List<ChampionSpellDTO> spells) {
-        this.spells = spells;
-    }
-
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 17 * hash + this.id;
+        hash = 17 * hash + this.key.intValue();
         return hash;
     }
 
@@ -179,7 +83,7 @@ public class ChampionDTO {
             return false;
         }
         final ChampionDTO other = (ChampionDTO) obj;
-        return this.id == other.id;
+        return (this.id == null ? other.id == null : this.id.equals(other.id));
     }
 
     @Override

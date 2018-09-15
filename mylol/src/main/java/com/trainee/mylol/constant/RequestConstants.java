@@ -8,4 +8,5 @@ public interface RequestConstants {
     String TAGS = "tags";
     String BEGIN_INDEX= "beginIndex";
     String END_INDEX = "endIndex";
+    String DATA_BY_ID = "dataById";
 }
