@@ -3,4 +3,4 @@
 Angular versão 6.1.4.
 NGRX versão 
 
-![demo](../demo.png)
+![demo](../demo.PNG)
